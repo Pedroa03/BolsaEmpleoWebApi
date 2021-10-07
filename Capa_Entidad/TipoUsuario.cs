@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Capa_Entidad
 {
-    public partial class TipoUsuario
+    public partial class TipoUsuario: EntityBase
     {
         public TipoUsuario()
         {

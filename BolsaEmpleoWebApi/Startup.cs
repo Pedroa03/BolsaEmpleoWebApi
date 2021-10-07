@@ -41,11 +41,16 @@ namespace BolsaEmpleoWebApi
             services.AddAutoMapper(config =>
             {
                 config.AddProfile<MapCategorias>();
+                config.AddProfile<MapTipoUsuario>();
                 
             });
 
             services.AddTransient<ICategoriaRepositorio, CategoriaRepositorio>();
             services.AddTransient<ICategoriaService, CategoriaService>();
+
+            services.AddTransient<ITipoUsuarioRepositorio, TipoUsuarioRepositorio>();
+            services.AddTransient<ITipoUsuarioService, TipoUsuarioService>();
+
 
 
             services.AddDbContext<BolsaEmpleoDBContext>(option =>
