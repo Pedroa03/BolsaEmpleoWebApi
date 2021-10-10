@@ -114,16 +114,16 @@ namespace Capa_Entidad
 
                 entity.Property(e => e.Url).HasMaxLength(500);
 
-                entity.HasOne(d => d.IdTipoJornadaNavigation)
+                entity.HasOne(d => d.TipoJornada)
                     .WithMany(p => p.Puestos)
                     .HasForeignKey(d => d.IdTipoJornada)
                     .HasConstraintName("FK_Puesto_Jornada");
 
-                entity.HasOne(d => d.IdUsuarioNavigation)
-                    .WithMany(p => p.Puestos)
-                    .HasForeignKey(d => d.IdUsuario)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Puesto_Usuario");
+                //entity.HasOne(d => d.Usuario)
+                //    .WithMany(p => p.)
+                //    .HasForeignKey(d => d.IdUsuario)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_Puesto_Usuario");
             });
 
             modelBuilder.Entity<TipoUsuario>(entity =>
@@ -161,12 +161,12 @@ namespace Capa_Entidad
                     .IsRequired()
                     .HasMaxLength(50);
 
-                entity.HasOne(d => d.IdCategoriaNavigation)
+                entity.HasOne(d => d.Categoria)
                     .WithMany(p => p.Usuarios)
                     .HasForeignKey(d => d.IdCategoria)
                     .HasConstraintName("FK_Usuario_Categoria");
 
-                entity.HasOne(d => d.IdTipoUsuarioNavigation)
+                entity.HasOne(d => d.TipoUsuario)
                     .WithMany(p => p.Usuarios)
                     .HasForeignKey(d => d.IdTipoUsuario)
                     .OnDelete(DeleteBehavior.ClientSetNull)

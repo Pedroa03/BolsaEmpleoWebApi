@@ -10,6 +10,7 @@ namespace Capa_Datos
 {
     public static class DbContextExtensions
     {
+        
         public static async Task<string> Insert<TEntityBase>(this DbContext context, TEntityBase entity) where TEntityBase : EntityBase
         {
             await context.Set<TEntityBase>().AddAsync(entity);
@@ -37,5 +38,7 @@ namespace Capa_Datos
 
             await context.SaveChangesAsync();
         }
+
+
     }
 }

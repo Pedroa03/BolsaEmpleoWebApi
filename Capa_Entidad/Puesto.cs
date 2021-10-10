@@ -19,7 +19,7 @@ namespace Capa_Entidad
         public string CorreoContacto { get; set; }
         public int IdUsuario { get; set; }
 
-        public virtual Jornada IdTipoJornadaNavigation { get; set; }
-        public virtual Usuario IdUsuarioNavigation { get; set; }
+        public virtual Jornada TipoJornada { get; set; }
+        public virtual Usuario Usuario { get; set; }
     }
 }

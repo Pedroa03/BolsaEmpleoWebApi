@@ -42,7 +42,8 @@ namespace BolsaEmpleoWebApi
             {
                 config.AddProfile<MapCategorias>();
                 config.AddProfile<MapTipoUsuario>();
-                
+                config.AddProfile<MapUsuario>();
+
             });
 
             services.AddTransient<ICategoriaRepositorio, CategoriaRepositorio>();
@@ -51,6 +52,8 @@ namespace BolsaEmpleoWebApi
             services.AddTransient<ITipoUsuarioRepositorio, TipoUsuarioRepositorio>();
             services.AddTransient<ITipoUsuarioService, TipoUsuarioService>();
 
+            services.AddTransient<IUsuarioRepositorio, UsuarioRepositorio>();
+            services.AddTransient<IUsuarioService, UsuarioService>();
 
 
             services.AddDbContext<BolsaEmpleoDBContext>(option =>
