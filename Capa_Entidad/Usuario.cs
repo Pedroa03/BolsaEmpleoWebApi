@@ -8,6 +8,13 @@ namespace Capa_Entidad
     public partial class Usuario : EntityBase
     {
       
+        public Usuario()
+        {
+            Puestos = new HashSet<Puesto>();
+        }
+
+
+
         public int IdUsuario { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
@@ -23,6 +30,6 @@ namespace Capa_Entidad
 
         public virtual Categoria Categoria { get; set; }
         public virtual TipoUsuario TipoUsuario { get; set; }
-        //public virtual ICollection<Puesto> Puestos { get; set; }
+        public virtual ICollection<Puesto> Puestos { get; set; }
     }
 }

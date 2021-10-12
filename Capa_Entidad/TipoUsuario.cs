@@ -10,6 +10,7 @@ namespace Capa_Entidad
         public TipoUsuario()
         {
             Usuarios = new HashSet<Usuario>();
+
         }
 
         public int Id { get; set; }

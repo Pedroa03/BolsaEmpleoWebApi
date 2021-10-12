@@ -1,29 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-#nullable disable
-
-namespace Capa_Entidad
+namespace Capa_Dto.DtoPuesto
 {
-    public partial class Puesto: EntityBase
+    public class PuestoDtoRequest
     {
-        public int IdPuesto { get; set; }
+        [Required]
         public string Compañia { get; set; }
+        [Required]
         public int IdTipoJornada { get; set; }
         public string Logo { get; set; }
         public string Url { get; set; }
+        [Required]
         public string Posicion { get; set; }
         public string Ubicacion { get; set; }
-        public int IdCategoria { get; set; }
+        [Required]
+        public int idCategoria { get; set; }
+        [Required]
         public string Descripcion { get; set; }
         public string CorreoContacto { get; set; }
-        public int IdUsuario { get; set; }
+        public int idUsuario { get; set; }
+        public string Unique { get; set; }
         public DateTime Fecha { get; set; }
-
-        public virtual Jornada TipoJornada { get; set; }
-        public virtual Usuario Usuario { get; set; }
-        public virtual Categoria Categoria { get; set; }
-
-
     }
 }

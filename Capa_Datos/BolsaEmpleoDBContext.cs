@@ -20,7 +20,7 @@ namespace Capa_Entidad
         public virtual DbSet<Categoria> Categoria { get; set; }
         public virtual DbSet<DetalleAplicacion> DetalleAplicacions { get; set; }
         public virtual DbSet<Jornada> Jornada { get; set; }
-        public virtual DbSet<Puesto> Puestos { get; set; }
+        public virtual DbSet<Puesto> Puesto { get; set; }
         public virtual DbSet<TipoUsuario> TipoUsuarios { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
 
@@ -84,46 +84,37 @@ namespace Capa_Entidad
 
             modelBuilder.Entity<Puesto>(entity =>
             {
-                entity.HasKey(e => e.IdPuestos);
-
-                entity.ToTable("Puesto");
-
-                entity.Property(e => e.IdPuestos).HasColumnName("idPuestos");
-
-                entity.Property(e => e.Compañia)
-                    .IsRequired()
-                    .HasMaxLength(100);
-
-                entity.Property(e => e.CorreoContacto).HasMaxLength(100);
-
-                entity.Property(e => e.Descripcion).HasMaxLength(600);
-
-                entity.Property(e => e.IdCategoria).HasColumnName("idCategoria");
-
+                entity.HasKey(e => e.IdPuesto);
+                entity.Property(e => e.IdPuesto).HasColumnName("idPuestos");
+                entity.Property(e => e.Compañia);
                 entity.Property(e => e.IdTipoJornada).HasColumnName("idTipoJornada");
-
+                entity.Property(e => e.Logo);
+                entity.Property(e => e.Url);
+                entity.Property(e => e.Posicion);
+                entity.Property(e => e.Ubicacion);
+                entity.Property(e => e.IdCategoria).HasColumnName("idCategoria");
+                entity.Property(e => e.Descripcion);
+                entity.Property(e => e.CorreoContacto);
                 entity.Property(e => e.IdUsuario).HasColumnName("idUsuario");
+                entity.Property(e => e.Unique);
+                entity.Property(e => e.Fecha);
 
-                entity.Property(e => e.Logo).HasMaxLength(800);
-
-                entity.Property(e => e.Posicion)
-                    .IsRequired()
-                    .HasMaxLength(100);
-
-                entity.Property(e => e.Ubicacion).HasMaxLength(200);
-
-                entity.Property(e => e.Url).HasMaxLength(500);
+                entity.HasOne(d => d.Categoria)
+                   .WithMany(p => p.Puestos)
+                   .HasForeignKey(d => d.IdCategoria)
+                   .HasConstraintName("FK_Puesto_Categoria");
 
                 entity.HasOne(d => d.TipoJornada)
-                    .WithMany(p => p.Puestos)
-                    .HasForeignKey(d => d.IdTipoJornada)
-                    .HasConstraintName("FK_Puesto_Jornada");
+                   .WithMany(p => p.Puestos)
+                   .HasForeignKey(d => d.IdTipoJornada)
+                   .HasConstraintName("FK_TipoJornada_Categoria");
 
-                //entity.HasOne(d => d.Usuario)
-                //    .WithMany(p => p.)
-                //    .HasForeignKey(d => d.IdUsuario)
-                //    .OnDelete(DeleteBehavior.ClientSetNull)
-                //    .HasConstraintName("FK_Puesto_Usuario");
+                entity.HasOne(d => d.Usuario)
+                   .WithMany(p => p.Puestos)
+                   .HasForeignKey(d => d.IdUsuario)
+                   .HasConstraintName("FK_Usuario_Categoria");
+
+
             });
 
             modelBuilder.Entity<TipoUsuario>(entity =>

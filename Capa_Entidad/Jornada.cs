@@ -5,13 +5,12 @@ using System.Collections.Generic;
 
 namespace Capa_Entidad
 {
-    public partial class Jornada
+    public partial class Jornada: EntityBase
     {
         public Jornada()
         {
             Puestos = new HashSet<Puesto>();
         }
-
         public int Id { get; set; }
         public string Descripcion { get; set; }
 
