@@ -41,13 +41,13 @@ namespace Capa_Negocio
             return response;
         }
 
-        public async Task<BaseResponse<string>> DeleteAsync(int id)
+        public async Task<BaseResponse<string>> DeleteAsync(string unique)
         {
             var response = new BaseResponse<string>();
 
             try
             {
-                await _repositorio.DeleteAsync(id);
+                await _repositorio.DeleteAsync(unique);
                 response.Success = true;
             }
             catch (Exception ex)
@@ -59,13 +59,13 @@ namespace Capa_Negocio
             return response;
         }
 
-        public async Task<BaseResponse<PuestoSingleDto>> GetAsync(int id)
+        public async Task<BaseResponse<PuestoSingleDto>> GetAsync(string unique)
         {
             var response = new BaseResponse<PuestoSingleDto>();
 
             try
             {
-                var entidad = await _repositorio.GetAsync(id);
+                var entidad = await _repositorio.GetAsync(unique);
 
                 if (entidad == null)
                 {
@@ -119,14 +119,14 @@ namespace Capa_Negocio
             return response;
         }
 
-        public async Task<BaseResponse<string>> UpdateAsync(int id, PuestoDtoRequest request)
+        public async Task<BaseResponse<string>> UpdateAsync(string unique, PuestoDtoRequest request)
         {
             var response = new BaseResponse<string>();
             try
             {
 
                 var entidad = _mapper.Map<Puesto>(request);
-                entidad.IdPuesto = id;
+                entidad.Unique = unique;
 
                 await _repositorio.UpdateAsync(entidad);
                 response.Success = true;

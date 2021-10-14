@@ -21,16 +21,16 @@ namespace Capa_Datos.Repositorio
             return await _context.Insert(entity);
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(string unique)
         {
             await _context.Delete(new TipoUsuario { 
-            Id = id
+            Unique = unique
             });
         }
 
-        public async Task<TipoUsuario> GetAsync(int id)
+        public async Task<TipoUsuario> GetAsync(string unique)
         {
-            return await Select(id);
+            return await Select(unique);
         }
 
         public async Task<(ICollection<TipoUsuario> colletion, int total)> ListAsync(string filter, int page, int rows)

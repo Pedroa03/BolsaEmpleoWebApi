@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Capa_Entidad
 {
-    public partial class Categoria:EntityBase
+    public class Categoria:EntityBase
     {
         public Categoria()
         {

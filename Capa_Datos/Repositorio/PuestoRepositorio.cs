@@ -20,18 +20,18 @@ namespace Capa_Datos.Repositorio
             return await _context.Insert(entity);
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(string unique)
         {
             await _context.Delete(new Puesto
             {
 
-                IdPuesto = id
+                Unique = unique
             });
         }
 
-        public async Task<Puesto> GetAsync(int id)
+        public async Task<Puesto> GetAsync(string unique)
         {
-            return await Select(id);
+            return await Select(unique);
         }
 
         public async Task<(ICollection<PuestoInfo> colletion, int total)> ListAsync(string filter, int page, int rows)
@@ -49,7 +49,8 @@ namespace Capa_Datos.Repositorio
                 Descripcion = p.Descripcion,
                 CorreoContacto = p.CorreoContacto,
                 Usuario = p.Usuario.Descripcion,
-                Fecha = p.Fecha
+                Fecha = p.Fecha,
+                Unique = p.Unique
                 
             }, p => p.Descripcion.Contains(filter), page, rows);
         }

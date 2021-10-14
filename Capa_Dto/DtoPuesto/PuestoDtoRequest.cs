@@ -24,7 +24,6 @@ namespace Capa_Dto.DtoPuesto
         public string Descripcion { get; set; }
         public string CorreoContacto { get; set; }
         public int idUsuario { get; set; }
-        public string Unique { get; set; }
         public DateTime Fecha { get; set; }
     }
 }

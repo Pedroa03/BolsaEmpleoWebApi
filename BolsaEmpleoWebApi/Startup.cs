@@ -32,6 +32,7 @@ namespace BolsaEmpleoWebApi
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddCors();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -45,6 +46,7 @@ namespace BolsaEmpleoWebApi
                 config.AddProfile<MapUsuario>();
                 config.AddProfile<MapJornada>();
                 config.AddProfile<MapPuesto>();
+                config.AddProfile<MapAplicacion>();
 
 
 
@@ -65,6 +67,9 @@ namespace BolsaEmpleoWebApi
             services.AddTransient<IPuestoRepositorio, PuestoRepositorio>();
             services.AddTransient<IPuestoService, PuestoService>();
 
+            services.AddTransient<IAplicacionRepositorio, AplicacionRepositorio>();
+            services.AddTransient<IAplicacionService, AplicacionService>();
+
 
             services.AddDbContext<BolsaEmpleoDBContext>(option =>
             {
@@ -75,12 +80,28 @@ namespace BolsaEmpleoWebApi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseCors(option =>
+            {
+                option.AllowAnyOrigin();
+                option.AllowAnyHeader();
+                option.AllowAnyMethod();
+            });
+
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "BolsaEmpleoWebApi v1"));
+            } else
+            {
+                app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "BolsaEmpleoWebApi v1"));
             }
+
+            
+
 
             app.UseHttpsRedirection();
 

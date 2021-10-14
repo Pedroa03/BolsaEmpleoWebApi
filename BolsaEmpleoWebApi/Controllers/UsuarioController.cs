@@ -1,6 +1,7 @@
 ﻿using Capa_Dto.DtoUsuario;
 using Capa_Entidad;
 using Capa_Negocio;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -21,6 +22,7 @@ namespace BolsaEmpleoWebApi.Controllers
             _service = service;
         }
 
+        
         [HttpGet]
         public async Task<ActionResult<UsuarioDtoResponse>> Get(string filter, int page = 1, int rows = 10)
         {
@@ -28,8 +30,9 @@ namespace BolsaEmpleoWebApi.Controllers
 
         }
 
+        
         [HttpGet("{id}")]
-        public async Task<ActionResult<Usuario>> GetUsuario(int id)
+        public async Task<ActionResult<Usuario>> GetUsuario(string id)
         {
             var response = await _service.GetAsync(id);
 
@@ -41,14 +44,16 @@ namespace BolsaEmpleoWebApi.Controllers
             return Ok(response);
         }
 
+        
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUsuario(int id, UsuarioDtoRequest request)
+        public async Task<IActionResult> PutUsuario(string id, UsuarioDtoRequest request)
         {
             var response = await _service.UpdateAsync(id, request);
 
             return Ok(response);
         }
 
+       
         [HttpPost]
         public async Task<ActionResult<Usuario>> PostUsuario([FromBody] UsuarioDtoRequest request)
         {
@@ -57,8 +62,9 @@ namespace BolsaEmpleoWebApi.Controllers
             return CreatedAtAction("GetUsuario", new { id = response.Result }, response);
         }
 
+        
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUsuario(int id)
+        public async Task<IActionResult> DeleteUsuario(string id)
         {
             var response = await _service.DeleteAsync(id);
             return Ok(response);

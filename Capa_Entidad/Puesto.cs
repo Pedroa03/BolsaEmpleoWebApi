@@ -5,8 +5,13 @@ using System.Collections.Generic;
 
 namespace Capa_Entidad
 {
-    public partial class Puesto: EntityBase
+    public class Puesto: EntityBase
     {
+        //public Puesto()
+        //{
+        //    DetallesAplicaciones = new HashSet<DetalleAplicacion>();
+        //} 
+
         public int IdPuesto { get; set; }
         public string Compañia { get; set; }
         public int IdTipoJornada { get; set; }
@@ -23,6 +28,7 @@ namespace Capa_Entidad
         public virtual Jornada TipoJornada { get; set; }
         public virtual Usuario Usuario { get; set; }
         public virtual Categoria Categoria { get; set; }
+        //public virtual ICollection<DetalleAplicacion> DetallesAplicaciones { get; set; }
 
 
     }

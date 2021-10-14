@@ -11,12 +11,12 @@ namespace Capa_Negocio
     {
         Task<JornadaDtoResponse> ListAsync(string filter, int page, int rows);
 
-        Task<BaseResponse<JornadaDto>> GetAsync(int id);
+        Task<BaseResponse<JornadaDto>> GetAsync(string unique);
 
         Task<BaseResponse<string>> CreateAsync(JornadaDtoRequest request);
 
-        Task<BaseResponse<string>> UpdateAsync(int id, JornadaDtoRequest request);
+        Task<BaseResponse<string>> UpdateAsync(string unique, JornadaDtoRequest request);
 
-        Task<BaseResponse<string>> DeleteAsync(int id);
+        Task<BaseResponse<string>> DeleteAsync(string unique);
     }
 }

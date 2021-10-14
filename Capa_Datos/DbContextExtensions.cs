@@ -20,6 +20,15 @@ namespace Capa_Datos
             return entity.Unique;
         }
 
+        //public static async Task<string> Insertar(this DbContext context , Aplicacion entity)
+        //{
+        //    await context.AddAsync(entity);
+        //    context.Entry(entity).State = EntityState.Added;
+        //    await context.SaveChangesAsync();
+        //    return entity.Unique;
+
+        //}
+
 
         public static async Task UpdateEntity<TRequest>(this DbContext context, TRequest entity) where TRequest : EntityBase
         {

@@ -11,9 +11,9 @@ namespace Capa_Datos.Repositorio
    public interface IUsuarioRepositorio
     {
         Task<(ICollection<UsuarioInfo> colletion, int total)> ListAsync(string filter, int page, int rows);
-        Task<Usuario> GetAsync(int id);
+        Task<Usuario> GetAsync(string unique);
         Task<string> CreateAsync(Usuario entity);
         Task UpdateAsync(Usuario entity);
-        Task DeleteAsync(int id);
+        Task DeleteAsync(string unique);
     }
 }

@@ -10,9 +10,9 @@ namespace Capa_Datos.Repositorio
     public interface IJornadaRepositorio
     {
         Task<(ICollection<Jornada> colletion, int total)> ListAsync(string filter, int page, int rows);
-        Task<Jornada> GetAsync(int id);
+        Task<Jornada> GetAsync(string unique);
         Task<string> CreateAsync(Jornada entity);
         Task UpdateAsync(Jornada entity);
-        Task DeleteAsync(int id);
+        Task DeleteAsync(string unique);
     }
 }

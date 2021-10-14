@@ -11,12 +11,12 @@ namespace Capa_Negocio
     {
         Task<PuestoDtoResponse> ListAsync(string filter, int page, int rows);
 
-        Task<BaseResponse<PuestoSingleDto>> GetAsync(int id);
+        Task<BaseResponse<PuestoSingleDto>> GetAsync(string unique);
 
         Task<BaseResponse<string>> CreateAsync(PuestoDtoRequest request);
 
-        Task<BaseResponse<string>> UpdateAsync(int id, PuestoDtoRequest request);
+        Task<BaseResponse<string>> UpdateAsync(string unique, PuestoDtoRequest request);
 
-        Task<BaseResponse<string>> DeleteAsync(int id);
+        Task<BaseResponse<string>> DeleteAsync(string unique);
     }
 }

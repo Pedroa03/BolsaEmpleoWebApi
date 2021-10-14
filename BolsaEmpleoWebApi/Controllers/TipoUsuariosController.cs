@@ -29,7 +29,7 @@ namespace BolsaEmpleoWebApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<TipoUsuario>> GetCategory(int id)
+        public async Task<ActionResult<TipoUsuario>> GetCategory(string id)
         {
             var response = await _service.GetAsync(id);
 
@@ -42,7 +42,7 @@ namespace BolsaEmpleoWebApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCategory(int id, TipoUsuarioDtoRequest request)
+        public async Task<IActionResult> PutCategory(string id, TipoUsuarioDtoRequest request)
         {
             var response = await _service.UpdateAsync(id, request);
 
@@ -58,7 +58,7 @@ namespace BolsaEmpleoWebApi.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCategory(int id)
+        public async Task<IActionResult> DeleteCategory(string id)
         {
             var response = await _service.DeleteAsync(id);
             return Ok(response);

@@ -65,9 +65,9 @@ namespace Capa_Datos
 
         }
 
-        public async Task<TEntityBase> Select(int id)
+        public async Task<TEntityBase> Select(string unique)
         {
-            var entity = await _context.Set<TEntityBase>().FindAsync(id);
+            var entity = await _context.Set<TEntityBase>().FirstOrDefaultAsync(e => e.Unique == unique);
             return entity;
         }
 

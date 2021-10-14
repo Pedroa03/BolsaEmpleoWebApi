@@ -10,9 +10,9 @@ namespace Capa_Datos.Repositorio
     public interface ITipoUsuarioRepositorio
     {
         Task<(ICollection<TipoUsuario> colletion, int total)> ListAsync(string filter, int page, int rows);
-        Task<TipoUsuario> GetAsync(int id);
+        Task<TipoUsuario> GetAsync(string unique);
         Task<string> CreateAsync(TipoUsuario entity);
         Task UpdateAsync(TipoUsuario entity);
-        Task DeleteAsync(int id);
+        Task DeleteAsync(string unique);
     }
 }

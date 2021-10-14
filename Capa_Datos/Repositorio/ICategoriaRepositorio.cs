@@ -10,9 +10,9 @@ namespace Capa_Datos.Repositorio
     public interface ICategoriaRepositorio
     {
         Task<(ICollection<Categoria> colletion, int total)> ListAsync(string filter, int page, int rows);
-        Task<Categoria> GetAsync(int id);
+        Task<Categoria> GetAsync(string unique);
         Task<string> CreateAsync(Categoria entity);
         Task UpdateAsync(Categoria entity);
-        Task DeleteAsync(int id);
+        Task DeleteAsync(string unique);
     }
 }

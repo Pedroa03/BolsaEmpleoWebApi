@@ -1,5 +1,4 @@
-﻿using Capa_Dto;
-using Capa_Dto.DtoJornada;
+﻿using Capa_Dto.DtoAplicacion;
 using Capa_Entidad;
 using Capa_Negocio;
 using Microsoft.AspNetCore.Http;
@@ -13,24 +12,24 @@ namespace BolsaEmpleoWebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class JornadasController : ControllerBase
+    public class AplicacionesController : ControllerBase
     {
-        private readonly IJornadaService _service;
+        private readonly IAplicacionService _service;
 
-        public JornadasController(IJornadaService service)
+        public AplicacionesController(IAplicacionService service)
         {
             _service = service;
         }
 
         [HttpGet]
-        public async Task<ActionResult<JornadaDtoResponse>> Get(string filter, int page = 1, int rows = 10)
+        public async Task<ActionResult<AplicacionDtoResponse>> Get(string filter, int page = 1, int rows = 10)
         {
             return Ok(await _service.ListAsync(filter, page, rows));
 
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Jornada>> GetCategory(string id)
+        public async Task<ActionResult<Aplicacion>> GetCategory(string id)
         {
             var response = await _service.GetAsync(id);
 
@@ -43,7 +42,7 @@ namespace BolsaEmpleoWebApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCategory(string id, JornadaDtoRequest request)
+        public async Task<IActionResult> PutCategory(string id, AplicacionDtoRequest request)
         {
             var response = await _service.UpdateAsync(id, request);
 
@@ -51,11 +50,12 @@ namespace BolsaEmpleoWebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Jornada>> PostCategory([FromBody] JornadaDtoRequest request)
+        public async Task<ActionResult<Aplicacion>> PostCategory([FromBody] AplicacionDtoRequest request)
         {
             var response = await _service.CreateAsync(request);
 
             return CreatedAtAction("GetCategory", new { id = response.Result }, response);
+            //return Ok(response);
         }
 
         [HttpDelete("{id}")]

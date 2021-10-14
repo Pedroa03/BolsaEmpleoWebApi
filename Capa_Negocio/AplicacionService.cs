@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Capa_Datos.Repositorio;
-using Capa_Dto.DtoJornada;
+using Capa_Dto.DtoAplicacion;
 using Capa_Entidad;
 using System;
 using System.Collections.Generic;
@@ -10,23 +10,24 @@ using System.Threading.Tasks;
 
 namespace Capa_Negocio
 {
-    public class JornadaService : IJornadaService
+   public class AplicacionService: IAplicacionService
     {
-        private readonly IJornadaRepositorio _repositorio;
+        private readonly IAplicacionRepositorio _repositorio;
         private readonly IMapper _mapper;
 
-        public JornadaService(IJornadaRepositorio repositorio, IMapper mapper)
+        public AplicacionService(IAplicacionRepositorio repositorio, IMapper mapper)
         {
             _repositorio = repositorio;
             _mapper = mapper;
         }
 
-        public async Task<BaseResponse<string>> CreateAsync(JornadaDtoRequest request)
+        public async Task<BaseResponse<string>> CreateAsync(AplicacionDtoRequest request)
         {
             var response = new BaseResponse<string>();
             try
             {
-                response.Result = await _repositorio.CreateAsync(_mapper.Map<Jornada>(request));
+                //response.Result = await _repositorio.CreateAsync(request);
+                response.Result = await _repositorio.CreateAsync(_mapper.Map<Aplicacion>(request));
                 response.Success = true;
 
 
@@ -59,9 +60,9 @@ namespace Capa_Negocio
             return response;
         }
 
-        public async Task<BaseResponse<JornadaDto>> GetAsync(string unique)
+        public async Task<BaseResponse<AplicacionDto>> GetAsync(string unique)
         {
-            var response = new BaseResponse<JornadaDto>();
+            var response = new BaseResponse<AplicacionDto>();
 
             try
             {
@@ -75,7 +76,7 @@ namespace Capa_Negocio
                 }
 
 
-                response.Result = _mapper.Map<JornadaDto>(category);
+                response.Result = _mapper.Map<AplicacionDto>(category);
 
                 response.Success = true;
             }
@@ -89,15 +90,15 @@ namespace Capa_Negocio
             return response;
         }
 
-        public async Task<JornadaDtoResponse> ListAsync(string filter, int page, int rows)
+        public async Task<AplicacionDtoResponse> ListAsync(string filter, int page, int rows)
         {
-            var response = new JornadaDtoResponse();
+            var response = new AplicacionDtoResponse();
             try
             {
                 var result = await _repositorio.ListAsync(filter ?? string.Empty, page, rows);
 
                 response.Collection = result.colletion
-                    .Select(p => _mapper.Map<JornadaDto>(p)).ToList();
+                    .Select(p => _mapper.Map<AplicacionDto>(p)).ToList();
 
 
                 var totalPage = result.total / rows;
@@ -119,13 +120,13 @@ namespace Capa_Negocio
             return response;
         }
 
-        public async Task<BaseResponse<string>> UpdateAsync(string unique, JornadaDtoRequest request)
+        public async Task<BaseResponse<string>> UpdateAsync(string unique, AplicacionDtoRequest request)
         {
             var response = new BaseResponse<string>();
             try
             {
 
-                var category = _mapper.Map<Jornada>(request);
+                var category = _mapper.Map<Aplicacion>(request);
                 category.Unique = unique;
 
                 await _repositorio.UpdateAsync(category);

@@ -9,7 +9,7 @@ namespace Capa_Dto.DtoUsuario
 {
     public class UsuarioDtoRequest
     {
-
+       
         [Required]
         public string Nombre { get; set; }
         [Required]

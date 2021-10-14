@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Capa_Entidad
 {
-    public partial class Jornada: EntityBase
+    public class Jornada: EntityBase
     {
         public Jornada()
         {
@@ -13,6 +13,7 @@ namespace Capa_Entidad
         }
         public int Id { get; set; }
         public string Descripcion { get; set; }
+        
 
         public virtual ICollection<Puesto> Puestos { get; set; }
     }

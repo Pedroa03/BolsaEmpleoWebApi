@@ -5,12 +5,13 @@ using System.Collections.Generic;
 
 namespace Capa_Entidad
 {
-    public partial class Usuario : EntityBase
+    public class Usuario : EntityBase
     {
       
         public Usuario()
         {
             Puestos = new HashSet<Puesto>();
+            //DetallesAplicaciones = new HashSet<DetalleAplicacion>();
         }
 
 
@@ -31,5 +32,6 @@ namespace Capa_Entidad
         public virtual Categoria Categoria { get; set; }
         public virtual TipoUsuario TipoUsuario { get; set; }
         public virtual ICollection<Puesto> Puestos { get; set; }
+        //public virtual ICollection<DetalleAplicacion> DetallesAplicaciones { get; set; }
     }
 }

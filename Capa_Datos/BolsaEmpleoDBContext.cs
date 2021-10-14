@@ -18,11 +18,11 @@ namespace Capa_Entidad
         }
 
         public virtual DbSet<Categoria> Categoria { get; set; }
-        public virtual DbSet<DetalleAplicacion> DetalleAplicacions { get; set; }
         public virtual DbSet<Jornada> Jornada { get; set; }
         public virtual DbSet<Puesto> Puesto { get; set; }
         public virtual DbSet<TipoUsuario> TipoUsuarios { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
+        public virtual DbSet<Aplicacion> Aplicacion { get; set; }
 
 
 
@@ -48,38 +48,14 @@ namespace Capa_Entidad
                 entity.Property(e => e.Descripcion).HasMaxLength(50);
             });
 
-            modelBuilder.Entity<DetalleAplicacion>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToTable("DetalleAplicacion");
-
-                entity.Property(e => e.DetalleAplicacionPuesto).HasMaxLength(50);
-
-                entity.Property(e => e.Id)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("id");
-
-                entity.Property(e => e.IdPuesto).HasColumnName("idPuesto");
-
-                entity.Property(e => e.IdUsuario).HasColumnName("idUsuario");
-
-                entity.HasOne(d => d.IdPuestoNavigation)
-                    .WithMany()
-                    .HasForeignKey(d => d.IdPuesto)
-                    .HasConstraintName("FK_DetalleAplicacion_Puesto");
-
-                entity.HasOne(d => d.IdUsuarioNavigation)
-                    .WithMany()
-                    .HasForeignKey(d => d.IdUsuario)
-                    .HasConstraintName("FK_DetalleAplicacion_Usuario");
-            });
 
             modelBuilder.Entity<Jornada>(entity =>
             {
                 entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.Descripcion).HasMaxLength(50);
+
+                entity.Property(e => e.Unique);
             });
 
             modelBuilder.Entity<Puesto>(entity =>
@@ -162,6 +138,14 @@ namespace Capa_Entidad
                     .HasForeignKey(d => d.IdTipoUsuario)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Usuario_TipoUsuario");
+            });
+
+            modelBuilder.Entity<Aplicacion>(entity => {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.IdPuesto);
+                entity.Property(e => e.IdUsuario);
+                entity.Property(e => e.Fecha);
+                entity.Property(e => e.Unique);
             });
 
             OnModelCreatingPartial(modelBuilder);

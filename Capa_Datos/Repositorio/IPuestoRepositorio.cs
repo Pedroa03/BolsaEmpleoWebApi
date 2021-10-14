@@ -11,9 +11,9 @@ namespace Capa_Datos.Repositorio
    public interface IPuestoRepositorio
     {
         Task<(ICollection<PuestoInfo> colletion, int total)> ListAsync(string filter, int page, int rows);
-        Task<Puesto> GetAsync(int id);
+        Task<Puesto> GetAsync(string unique);
         Task<string> CreateAsync(Puesto entity);
         Task UpdateAsync(Puesto entity);
-        Task DeleteAsync(int id);
+        Task DeleteAsync(string unique);
     }
 }
