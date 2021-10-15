@@ -24,7 +24,8 @@ namespace Capa_Dto.DtoUsuario
         [Required]
         public int IdCategoria { get; set; }
         public string Descripcion { get; set; }
-        public string Logo { get; set; }
+        public string NombreArchivo { get; set; }
         public string Url { get; set; }
+        public string Base64Image { get; set; }
     }
 }

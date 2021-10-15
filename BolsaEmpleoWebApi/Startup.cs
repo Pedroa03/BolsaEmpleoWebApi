@@ -34,6 +34,7 @@ namespace BolsaEmpleoWebApi
 
             services.AddCors();
             services.AddControllers();
+            services.Configure<AppSetting>(Configuration);
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BolsaEmpleoWebApi", Version = "v1" });
@@ -51,6 +52,8 @@ namespace BolsaEmpleoWebApi
 
 
             });
+
+            services.AddTransient<IFileUploader, FileUploader>();
 
             services.AddTransient<ICategoriaRepositorio, CategoriaRepositorio>();
             services.AddTransient<ICategoriaService, CategoriaService>();

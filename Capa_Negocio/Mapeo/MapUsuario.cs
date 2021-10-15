@@ -54,7 +54,7 @@ namespace Capa_Negocio.Mapeo
                 .ForMember(o => o.FechaCreacion, d => d.MapFrom(x => x.FechaCreacion))
                 .ForMember(o => o.IdCategoria, d => d.MapFrom(x => x.IdCategoria))
                 .ForMember(o => o.Descripcion, d => d.MapFrom(x => x.Descripcion))
-                .ForMember(o => o.Logo, d => d.MapFrom(x => x.Logo))
+                .ForMember(o => o.NombreArchivo, d => d.MapFrom(x => x.Logo))
                 .ForMember(o => o.Url, d => d.MapFrom(x => x.Url))
                 .ReverseMap();
         }

@@ -14,11 +14,13 @@ namespace Capa_Negocio
     {
         private readonly IUsuarioRepositorio _repositorio;
         private readonly IMapper _mapper;
+        private readonly IFileUploader _fileUploader;
 
-        public UsuarioService(IUsuarioRepositorio repositorio, IMapper mapper)
+        public UsuarioService(IUsuarioRepositorio repositorio, IMapper mapper, IFileUploader fileUploader)
         {
             _repositorio = repositorio;
             _mapper = mapper;
+            _fileUploader = fileUploader;
         }
 
         public async Task<BaseResponse<string>> CreateAsync(UsuarioDtoRequest request)
@@ -26,6 +28,7 @@ namespace Capa_Negocio
             var response = new BaseResponse<string>();
             try
             {
+                request.Url = await _fileUploader.UploadAsync(request.Base64Image, request.NombreArchivo);
                 response.Result = await _repositorio.CreateAsync(_mapper.Map<Usuario>(request));
                 response.Success = true;
 
