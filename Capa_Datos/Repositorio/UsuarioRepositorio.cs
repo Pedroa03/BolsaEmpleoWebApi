@@ -48,7 +48,10 @@ namespace Capa_Datos.Repositorio
                 Categoria = p.Categoria.Descripcion,
                 Descripcion = p.Descripcion,
                 Logo = p.Logo,
-                Unique = p.Unique
+                Unique = p.Unique,
+                Url = p.Url,
+                Estatus = p.Estatus
+
 
             }, p => p.Nombre.Contains(filter),page,rows);
         }

@@ -14,13 +14,14 @@ namespace Capa_Entidad.Complejo
         public string TipoUsuario { get; set; }
         public string Clave { get; set; }
         public string Correo { get; set; }
-        public bool Estatus { get; set; }
+        public bool? Estatus { get; set; }
         public DateTime? FechaCreacion { get; set; }
         public string Categoria { get; set; }
         public string Descripcion { get; set; }
         public string Logo { get; set; }
         public string Url { get; set; }
         public string Unique { get; set; }
+
 
     }
 }

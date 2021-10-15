@@ -22,7 +22,7 @@ namespace BolsaEmpleoWebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<TipoUsuarioDtoResponse>> Get(string filter, int page = 1, int rows = 10)
+        public async Task<ActionResult<TipoUsuarioDtoResponse>> Get(string filter, int page = 1, int rows = 100)
         {
             return Ok(await _service.ListAsync(filter, page, rows));
 
