@@ -12,6 +12,7 @@ namespace Capa_Entidad.Complejo
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public string TipoUsuario { get; set; }
+        public string NombreUsuario { get; set;}
         public string Clave { get; set; }
         public string Correo { get; set; }
         public bool? Estatus { get; set; }

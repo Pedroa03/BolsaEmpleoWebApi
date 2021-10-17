@@ -1,5 +1,6 @@
 ﻿using Capa_Dto;
 using Capa_Dto.DtoUsuario;
+using Capa_Entidad;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,5 +20,8 @@ namespace Capa_Negocio
         Task<BaseResponse<string>> UpdateAsync(string unique, UsuarioDtoRequest request);
 
         Task<BaseResponse<string>> DeleteAsync(string unique);
+
+        Task<BaseResponse<Usuario>> LoginAsync(string usuario, string clave);
+      
     }
 }

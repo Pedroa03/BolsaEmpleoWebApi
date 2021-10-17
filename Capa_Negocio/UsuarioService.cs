@@ -122,6 +122,28 @@ namespace Capa_Negocio
             return response;
         }
 
+        public async Task<BaseResponse<Usuario>> LoginAsync(string usuario, string clave)
+        {
+            var response = new BaseResponse<Usuario>();
+
+            var entidad = await _repositorio.LoginAsync(usuario, clave);
+            if(entidad == null)
+            {
+                response.Success = false;
+                response.ErrorMessage = "Usuario o clave invalido";
+                return response;
+            }
+
+
+
+            response.Success = true;
+            response.ErrorMessage = "Seccion Iniciada correcatmente";
+            response.Result = entidad;
+
+            return response;
+           
+        }
+
         public async Task<BaseResponse<string>> UpdateAsync(string unique, UsuarioDtoRequest request)
         {
             var response = new BaseResponse<string>();
@@ -133,6 +155,7 @@ namespace Capa_Negocio
 
                 await _repositorio.UpdateAsync(entidad);
                 response.Success = true;
+
             }
             catch (Exception ex)
             {
@@ -144,5 +167,6 @@ namespace Capa_Negocio
 
             return response;
         }
+
     }
 }

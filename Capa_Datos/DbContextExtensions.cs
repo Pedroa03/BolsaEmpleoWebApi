@@ -48,6 +48,16 @@ namespace Capa_Datos
             await context.SaveChangesAsync();
         }
 
+        public static async Task<Usuario> LoginAsync(this DbContext context, string usuario, string clave)
+        {
+            var entity = await context.Set<Usuario>()
+                .Where(s => s.Correo == usuario)
+                .Where(r => r.Clave == clave)
+                .FirstOrDefaultAsync();
+
+            return entity;
+        }
+
 
     }
 }

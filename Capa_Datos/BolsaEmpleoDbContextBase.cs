@@ -72,9 +72,5 @@ namespace Capa_Datos
         }
 
 
-
-
-
-
     }
 }

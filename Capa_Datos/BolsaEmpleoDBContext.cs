@@ -112,6 +112,8 @@ namespace Capa_Entidad
 
                 entity.Property(e => e.Apellido).HasMaxLength(50);
 
+                //entity.Property(e => e.NombreUsuario);
+
                 entity.Property(e => e.Clave)
                     .IsRequired()
                     .HasMaxLength(50);

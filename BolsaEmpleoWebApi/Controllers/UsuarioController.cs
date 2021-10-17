@@ -69,5 +69,15 @@ namespace BolsaEmpleoWebApi.Controllers
             var response = await _service.DeleteAsync(id);
             return Ok(response);
         }
+        [HttpGet("{usuario},{clave}")]
+        public async Task<ActionResult<UsuarioDtoResponse>> Login(string usuario, string clave )
+        {
+            return Ok(await _service.LoginAsync(usuario,clave));
+
+        }
+
+
+
+
     }
 }

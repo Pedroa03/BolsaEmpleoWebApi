@@ -15,5 +15,6 @@ namespace Capa_Datos.Repositorio
         Task<string> CreateAsync(Usuario entity);
         Task UpdateAsync(Usuario entity);
         Task DeleteAsync(string unique);
+        Task<Usuario> LoginAsync(string Usuario, string Clave);
     }
 }

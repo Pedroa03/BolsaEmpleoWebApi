@@ -56,6 +56,11 @@ namespace Capa_Datos.Repositorio
             }, p => p.Nombre.Contains(filter),page,rows);
         }
 
+        public async Task<Usuario> LoginAsync(string Usuario, string Clave)
+        {
+            return await _context.LoginAsync(Usuario, Clave);
+        }
+
         public async Task UpdateAsync(Usuario entity)
         {
             await _context.UpdateEntity(entity);
