@@ -21,6 +21,7 @@ namespace Capa_Negocio.Mapeo
 
 
             CreateMap<Categoria, CategoriaDtoRequest>()
+               .ForMember(origen => origen.Id, destino => destino.MapFrom(x => x.Id))
                .ForMember(origen => origen.Descripcion, destino => destino.MapFrom(x => x.Descripcion))
                .ReverseMap();
         }
